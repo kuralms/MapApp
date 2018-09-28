@@ -1,11 +1,37 @@
 package quick.kural.quickstart.Retrofit;
 
+import com.google.gson.JsonObject;
+
+import java.util.List;
+
+import io.reactivex.Single;
+
+import quick.kural.quickstart.Retrofit.Objects.ListingDetail.RespListingDetails;
+import quick.kural.quickstart.Retrofit.Objects.MasterCat.RespMasterCategorie;
+import quick.kural.quickstart.Retrofit.Objects.Review.RespReview;
+import quick.kural.quickstart.Retrofit.Objects.SearchListing.RespListingSearch;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+
 /**
  * Created by kural mughil selvam on 08-10-2017.
  */
 
 public interface ApiInterface {
 
+    @GET("masters/category")
+    Call<RespMasterCategorie> rf_masterCat();
+
+    @GET("review")
+    Call<RespReview> rf_review();
+
+    @POST("listing")
+    Call<RespListingSearch> rf_listing(@Body JsonObject SearchObj);
+
+    @GET("listing/view/10")
+    Call<RespListingDetails> rf_listing_detail();
 
 
   /*@Multipart
@@ -33,5 +59,7 @@ public interface ApiInterface {
   @POST("upload_profile_picture")
   Call<UpdateAccountResp> rf_uploadPic(@Header(header) String header_value, @Part("email") String email,
                                        @Part MultipartBody.Part upload_profile_picture);*/
+
+
 
 }

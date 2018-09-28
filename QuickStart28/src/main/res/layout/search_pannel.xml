@@ -25,6 +25,8 @@
             android:paddingLeft="5dp"
             android:layout_margin="15dp"
             android:background="@drawable/curved_edges_transaparent"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
             android:paddingStart="5dp" />
    <!-- </android.support.design.widget.TextInputLayout>-->
 

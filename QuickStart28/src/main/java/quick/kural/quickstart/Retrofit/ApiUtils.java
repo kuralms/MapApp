@@ -1,5 +1,7 @@
 package quick.kural.quickstart.Retrofit;
 
+import android.content.Context;
+
 import quick.kural.quickstart.BuildConfig;
 
 /**
@@ -17,5 +19,9 @@ public class ApiUtils {
 
             return RetroFitClient.getClient(BASE_URL).create(ApiInterface.class);
         }
+    public static ApiInterface getAPIServiceRx(Context context) {
 
+        return RetroFitBuilderReactive.getRxClient(BASE_URL,context)
+                .create(ApiInterface.class);
+    }
 }

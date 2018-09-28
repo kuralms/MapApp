@@ -51,7 +51,7 @@ public class AdapterHorizontalScroller extends
         requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
         GlideApp.with(context_main)
         .load(mItem.getImage_address())
-        /*.apply(requestOptions)*/
+        .apply(requestOptions)
         .into(holder.imageView);
 
 

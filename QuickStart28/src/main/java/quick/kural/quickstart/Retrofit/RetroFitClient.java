@@ -27,7 +27,6 @@ public class RetroFitClient {
                     .client(client)
                     .addConverterFactory(StringConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
 
 
