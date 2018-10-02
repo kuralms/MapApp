@@ -33,6 +33,8 @@ public interface ApiInterface {
     @GET("listing/view/10")
     Call<RespListingDetails> rf_listing_detail();
 
+    @GET("listing/popular")
+    Call<RespListingSearch> rf_listing_popular();
 
   /*@Multipart
   @POST("user_signup")

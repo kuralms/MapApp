@@ -83,8 +83,8 @@ public class MapsActivity extends
     void getLocation(){
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment)
+                getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
     @Override
@@ -192,7 +192,7 @@ public class MapsActivity extends
         }
 
         //Edit the following as per you needs
-        googleMap.setTrafficEnabled(true);
+        googleMap.setTrafficEnabled(false);
         googleMap.setIndoorEnabled(true);
         googleMap.setBuildingsEnabled(true);
         googleMap.getUiSettings().setZoomControlsEnabled(true);
@@ -201,18 +201,16 @@ public class MapsActivity extends
         for (int i = 0; i <list_search_list.size() ; i++) {
             Double lat,lon;
 
-
-
             lat = Double.parseDouble(list_search_list.get(i).getLatitude());
             lon = Double.parseDouble(list_search_list.get(i).getLongitude());
 
             LatLng placeLocation = new LatLng(lat, lon); //Make them global
             gMap.addMarker(new MarkerOptions().position(placeLocation));
 
-            if(i == 1){
+            if(i == 0){
 
                 gMap.moveCamera(CameraUpdateFactory.newLatLng(placeLocation));
-                gMap.animateCamera(CameraUpdateFactory.zoomTo(5), 100, null);
+                gMap.animateCamera(CameraUpdateFactory.zoomTo(10), 1000, null);
             }
 
             //Log.d("loccc",""+lat+"--"+lon);
@@ -271,14 +269,14 @@ public class MapsActivity extends
     @Override
     public void onLocationChanged(Location location) {
 
-        if(!iScurentLocatoinMarked) {
+        /*if(!iScurentLocatoinMarked) {
             LatLng placeLocation = new LatLng(location.getLatitude(), location.getLongitude()); //Make them global
             gMap.addMarker(new MarkerOptions().position(placeLocation)
                     .title("YOu Are here"));
             gMap.moveCamera(CameraUpdateFactory.newLatLng(placeLocation));
             gMap.animateCamera(CameraUpdateFactory.zoomTo(5), 15000, null);
         }
-
+*/
     }
 
     @Override
@@ -306,9 +304,7 @@ public class MapsActivity extends
     public void onBackPressed() {
         super.onBackPressed();
 
-        if (fragmentListingDetail.isVisible()){
-            fragmentListingDetail.dismiss();
-        }
+
 
 
     }

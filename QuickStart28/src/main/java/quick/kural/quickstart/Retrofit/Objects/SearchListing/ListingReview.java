@@ -20,6 +20,9 @@ public class ListingReview implements Serializable
     @SerializedName("user_email")
     @Expose
     private String userEmail;
+    @SerializedName("user_image")
+    @Expose
+    private String userImage;
     @SerializedName("review")
     @Expose
     private String review;
@@ -35,7 +38,7 @@ public class ListingReview implements Serializable
     @SerializedName("status")
     @Expose
     private Integer status;
-    private final static long serialVersionUID = 5225582041678465404L;
+    private final static long serialVersionUID = 1213487642184127552L;
 
     /**
      * No args constructor for use in serialization
@@ -50,18 +53,20 @@ public class ListingReview implements Serializable
      * @param starRating
      * @param status
      * @param createdAt
+     * @param userImage
      * @param userName
      * @param userEmail
      * @param listingId
      * @param reviewId
      * @param review
      */
-    public ListingReview(Integer reviewId, Integer listingId, String userName, String userEmail, String review, Integer starRating, String createdAt, String updatedAt, Integer status) {
+    public ListingReview(Integer reviewId, Integer listingId, String userName, String userEmail, String userImage, String review, Integer starRating, String createdAt, String updatedAt, Integer status) {
         super();
         this.reviewId = reviewId;
         this.listingId = listingId;
         this.userName = userName;
         this.userEmail = userEmail;
+        this.userImage = userImage;
         this.review = review;
         this.starRating = starRating;
         this.createdAt = createdAt;
@@ -99,6 +104,14 @@ public class ListingReview implements Serializable
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 
     public String getReview() {

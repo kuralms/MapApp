@@ -53,7 +53,8 @@ import retrofit2.Response;
 
 public class SearchActivity extends BaseActivity
         implements AdapterSearchResults.RecylerGridInterface,
-        GdprFragmentDialougePrivacyandTerms.AcceptGdprInterface, BottomNavigationView.OnNavigationItemReselectedListener {
+        GdprFragmentDialougePrivacyandTerms.AcceptGdprInterface,
+        BottomNavigationView.OnNavigationItemReselectedListener {
 
     @BindView(R.id.spinner_search_cat)
     Spinner spinner_cat;
@@ -95,7 +96,7 @@ public class SearchActivity extends BaseActivity
         mAPIService = ApiUtils.getAPIService();
 
 
-        menu = new SlidingMenu(this);
+       /* menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.RIGHT);
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
         menu.setShadowWidthRes(R.dimen.shadow_width);
@@ -104,7 +105,7 @@ public class SearchActivity extends BaseActivity
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.sliding_menu);
-
+*/
         btmView.setOnNavigationItemReselectedListener(this);
 
 
@@ -143,12 +144,50 @@ public class SearchActivity extends BaseActivity
 
 
     }
+    private void mtd_call_popular() {
 
+
+        mAPIService.rf_listing_popular().enqueue(new Callback<RespListingSearch>() {
+            @Override
+            public void onResponse(Call<RespListingSearch> call, Response<RespListingSearch> response) {
+
+                if(response.body().getStatus().equals(200)) {
+
+                    list_search_list.clear();
+                    for (int i = 0; i < response.body().getData().size(); i++) {
+
+                        obj_search_list = new quick.kural.quickstart.Retrofit.Objects.SearchListing.Datum(
+                                response.body().getData().get(i).getListingId(),
+                                response.body().getData().get(i).getListingTitle(),
+                                response.body().getData().get(i).getDescription(),
+                                response.body().getData().get(i).getLatitude(),
+                                response.body().getData().get(i).getLongitude(),
+                                response.body().getData().get(i).getLocation(),
+                                response.body().getData().get(i).getMCategory(),
+                                response.body().getData().get(i).getListingReviews(),
+                                response.body().getData().get(i).getListingSliders());
+
+                        list_search_list.add(obj_search_list);
+                    }
+
+                   mtd_update_rv_list(list_search_list);
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RespListingSearch> call, Throwable t) {
+
+            }
+        });
+
+    }
 
     private void mtd_call_searchResults(String s) {
 
         JsonObject jsonObject = new JsonObject();
-        if(s != null ) {
+        if(!spinner_cat.getSelectedItem().toString().equalsIgnoreCase(All_cat) ) {
 
             jsonObject.addProperty("searchTerm", s);
 
@@ -156,7 +195,7 @@ public class SearchActivity extends BaseActivity
         }else {
             jsonObject.addProperty("searchTerm", "");
 
-            jsonObject.addProperty("categoryId", All_cat);
+            jsonObject.addProperty("categoryId", 0);
 
         }
 
@@ -180,12 +219,18 @@ public class SearchActivity extends BaseActivity
                                 response.body().getData().get(i).getLocation(),
                                 response.body().getData().get(i).getMCategory(),
                                 response.body().getData().get(i).getListingReviews(),
-                                response.body().getData().get(i).getListingTags());
+                                response.body().getData().get(i).getListingSliders());
 
                        list_search_list.add(obj_search_list);
                     }
 
-                    mtd_update_rv_list(list_search_list);
+                   // mtd_update_rv_list(list_search_list);
+
+                    Intent in_map = new Intent(SearchActivity.this,MapsActivity.class);
+                    in_map.putExtra("searchObj", (Serializable) list_search_list);
+                    startActivity(in_map);
+
+
                 }
             }
 
@@ -240,7 +285,8 @@ public class SearchActivity extends BaseActivity
                                response.body().getData().get(i).getStatus());
 
                         list_respMasterCategorie.add(obj_respMasterCategorie);
-                        cate_title.add("-- All --");
+                        if(i == 0){
+                        cate_title.add("-- All --");}
                         cate_title.add(response.body().getData().get(i).getCategoryName());
                    }
 
@@ -254,6 +300,7 @@ public class SearchActivity extends BaseActivity
                 // Apply the adapter to the spinner
                    spinner_cat.setAdapter(adapter);
 
+                   mtd_call_popular();
 
                }else {
                    Toast.makeText(SearchActivity.this, "Failed", Toast.LENGTH_SHORT).show();
@@ -284,7 +331,7 @@ public class SearchActivity extends BaseActivity
 
     @OnClick(R.id.tb_normal_menu)
         void show_hide_menu(){
-            menu.toggle();
+          //  menu.toggle();
         }
 
         @OnClick(R.id.editText_search_string)

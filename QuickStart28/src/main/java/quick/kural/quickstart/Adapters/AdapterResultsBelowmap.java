@@ -10,10 +10,16 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import quick.kural.quickstart.R;
 import quick.kural.quickstart.Retrofit.Objects.SearchListing.Datum;
 import quick.kural.quickstart.Utils.GlideApp;
@@ -46,13 +52,27 @@ public class AdapterResultsBelowmap extends
 
             Datum mItem = mValues.get(position);
 
-            holder.tv_heading.setText(mItem.getListingTitle());
+        holder.tv_heading.setText(mItem.getListingTitle());
+        MultiTransformation multi = new MultiTransformation(
+        new RoundedCornersTransformation(90, 0, RoundedCornersTransformation.CornerType.TOP_LEFT));
+
+
 
         GlideApp.with(context_main)
-        .load(mItem.getListingId())
-        .placeholder(R.drawable.logo)
-        .apply(RequestOptions.circleCropTransform())
+        .load(mItem.getListingSliders().get(0).getImgPath())
+        .apply(RequestOptions.bitmapTransform(multi))
         .into(holder.imageView);
+
+
+        GlideApp.with(context_main)
+        .load(mItem.getListingSliders().get(0).getImgPath())
+        .apply(RequestOptions.circleCropTransform())
+        .into(holder.imageView_pic);
+
+        holder.tv_categorie.setText(mItem.getMCategory().getCategoryName());
+        holder.tv_review_txt.setText(mItem.getDescription());//mItem.getListingReviews().get(0).getReview()
+        holder.tv_address.setText(mItem.getDescription());
+
 
         int rating_val = 3; //mItem.getListingReviews()
         holder.ratingBar.setNumStars(rating_val);
@@ -76,15 +96,19 @@ public class AdapterResultsBelowmap extends
     class ViewHolder extends RecyclerView.ViewHolder {
 
             View mView;
-            ImageView imageView;
-            TextView tv_heading;
+            ImageView imageView, imageView_pic;
+            TextView tv_heading,tv_categorie,tv_review_txt,tv_address;
             RatingBar ratingBar;
             ViewHolder(View view) {
             super(view);
             mView = view;
             imageView = mView.findViewById(R.id.imageView_vp_main);
             tv_heading = mView.findViewById(R.id.textView_vp_heading);
+            tv_categorie = mView.findViewById(R.id.text_heading_over_img);
+            tv_review_txt = mView.findViewById(R.id.textView_review_txt);
+            tv_address = mView.findViewById(R.id.textView_address);
             ratingBar = mView.findViewById(R.id.rating_bar);
+            imageView_pic = mView.findViewById(R.id.imageView_user_pic);
 
     }
 

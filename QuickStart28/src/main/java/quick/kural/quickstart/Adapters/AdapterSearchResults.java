@@ -47,9 +47,10 @@ public class AdapterSearchResults extends
             Datum mItem = mValues.get(position);
 
             holder.tv_heading.setText(mItem.getListingTitle());
+            holder.tv_sub_detail.setText(mItem.getDescription());
 
         GlideApp.with(context_main)
-        .load(mItem.getListingId())
+        .load(mItem.getListingSliders().get(0).getImgPath())
         .placeholder(R.drawable.logo)
         .apply(RequestOptions.circleCropTransform())
         .into(holder.imageView);
@@ -76,12 +77,13 @@ public class AdapterSearchResults extends
 
             View mView;
             ImageView imageView;
-            TextView tv_heading;
+            TextView tv_heading, tv_sub_detail;
             ViewHolder(View view) {
             super(view);
             mView = view;
             imageView = mView.findViewById(R.id.imageView_vp_main);
             tv_heading = mView.findViewById(R.id.textView_vp_heading);
+            tv_sub_detail =  mView.findViewById(R.id.textView_sub_detail);
 
     }
 

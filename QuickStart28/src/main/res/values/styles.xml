@@ -9,15 +9,13 @@
     </style>
 
     <style name="RatingBar" parent="Base.Widget.AppCompat.RatingBar.Small">
-        <item name="colorControlNormal">@color/red</item>
-        <item name="colorControlActivated">@color/red</item>
+        <item name="colorControlNormal">@color/RedAccent</item>
+        <item name="colorControlActivated">@color/RedAccent</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:layout_margin">30dp</item>
-        <item name="android:background">@mipmap/ic_launcher</item>
+        <item name="android:background">@drawable/splash_screen</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

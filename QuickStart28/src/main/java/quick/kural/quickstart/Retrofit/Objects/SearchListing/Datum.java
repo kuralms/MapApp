@@ -2,6 +2,7 @@
 package quick.kural.quickstart.Retrofit.Objects.SearchListing;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -32,11 +33,11 @@ public class Datum implements Serializable
     private MCategory mCategory;
     @SerializedName("listing_reviews")
     @Expose
-    private List<ListingReview> listingReviews = null;
-    @SerializedName("listing_tags")
+    private List<ListingReview> listingReviews = new ArrayList<ListingReview>();
+    @SerializedName("listing_sliders")
     @Expose
-    private List<ListingTag> listingTags = null;
-    private final static long serialVersionUID = -5777958476190667790L;
+    private List<ListingSlider> listingSliders = new ArrayList<ListingSlider>();
+    private final static long serialVersionUID = -3271343346088958657L;
 
     /**
      * No args constructor for use in serialization
@@ -47,25 +48,17 @@ public class Datum implements Serializable
 
     /**
      * 
-     * @param listingTags
      * @param mCategory
      * @param location
      * @param description
      * @param longitude
      * @param latitude
+     * @param listingSliders
      * @param listingReviews
      * @param listingTitle
      * @param listingId
      */
-    public Datum(Integer listingId,
-                 String listingTitle,
-                 String description,
-                 String latitude,
-                 String longitude,
-                 String location,
-                 MCategory mCategory,
-                 List<ListingReview> listingReviews,
-                 List<ListingTag> listingTags) {
+    public Datum(Integer listingId, String listingTitle, String description, String latitude, String longitude, String location, MCategory mCategory, List<ListingReview> listingReviews, List<ListingSlider> listingSliders) {
         super();
         this.listingId = listingId;
         this.listingTitle = listingTitle;
@@ -75,7 +68,7 @@ public class Datum implements Serializable
         this.location = location;
         this.mCategory = mCategory;
         this.listingReviews = listingReviews;
-        this.listingTags = listingTags;
+        this.listingSliders = listingSliders;
     }
 
     public Integer getListingId() {
@@ -142,12 +135,12 @@ public class Datum implements Serializable
         this.listingReviews = listingReviews;
     }
 
-    public List<ListingTag> getListingTags() {
-        return listingTags;
+    public List<ListingSlider> getListingSliders() {
+        return listingSliders;
     }
 
-    public void setListingTags(List<ListingTag> listingTags) {
-        this.listingTags = listingTags;
+    public void setListingSliders(List<ListingSlider> listingSliders) {
+        this.listingSliders = listingSliders;
     }
 
 }

@@ -2,6 +2,7 @@
 package quick.kural.quickstart.Retrofit.Objects.SearchListing;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -17,7 +18,7 @@ public class RespListingSearch implements Serializable
     private Boolean success;
     @SerializedName("data")
     @Expose
-    private List<Datum> data = null;
+    private List<Datum> data = new ArrayList<Datum>();
     @SerializedName("message")
     @Expose
     private String message;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimaryDark">#E52B50</color>
-    <color name="primary">#FE6C27</color>
+    <color name="primary">#E24F61</color>
     <color name="RedAccent">#FE6C27</color>
     <color name="Text_Login">#ffffff</color>
     <color name="white">#ffffff</color>
