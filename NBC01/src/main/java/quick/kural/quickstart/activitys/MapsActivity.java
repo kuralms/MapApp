@@ -42,7 +42,6 @@ import quick.kural.quickstart.Retrofit.Objects.MasterCat.RespMasterCategorie;
 import quick.kural.quickstart.Retrofit.Objects.Obj_vp_data;
 import quick.kural.quickstart.Retrofit.Objects.SearchListing.Datum;
 import quick.kural.quickstart.activitys.FragmentDialouge.FragmentListingDetail;
-import quick.kural.quickstart.activitys.FragmentDialouge.GdprFragmentDialougePrivacyandTerms;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -45,7 +45,6 @@ import quick.kural.quickstart.Retrofit.Objects.MasterCat.RespMasterCategorie;
 import quick.kural.quickstart.Retrofit.Objects.Obj_vp_data;
 import quick.kural.quickstart.Retrofit.Objects.Review.RespReview;
 import quick.kural.quickstart.Retrofit.Objects.SearchListing.RespListingSearch;
-import quick.kural.quickstart.activitys.FragmentDialouge.GdprFragmentDialougePrivacyandTerms;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,7 +52,6 @@ import retrofit2.Response;
 
 public class SearchActivity extends BaseActivity
         implements AdapterSearchResults.RecylerGridInterface,
-        GdprFragmentDialougePrivacyandTerms.AcceptGdprInterface,
         BottomNavigationView.OnNavigationItemReselectedListener {
 
     @BindView(R.id.spinner_search_cat)
@@ -72,7 +70,7 @@ public class SearchActivity extends BaseActivity
     private  String All_cat = "-- All --";
     private static final int TIME_INTERVAL = 1500;
     private long mBackPressed;
-    private GdprFragmentDialougePrivacyandTerms dialougeGdpr;
+
     SlidingMenu menu;
 
     CompositeDisposable disposableSpacexResp = new CompositeDisposable();
@@ -359,20 +357,7 @@ public class SearchActivity extends BaseActivity
 
 
 
-    public void ShowDialougeFragment(){
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        dialougeGdpr = GdprFragmentDialougePrivacyandTerms.newInstance("Gdpr",1);
-        dialougeGdpr.setCancelable(false);
-        dialougeGdpr.show(ft, "verify");
-
-
-    }
 
 
 
@@ -403,10 +388,6 @@ public class SearchActivity extends BaseActivity
 
     }
 
-    @Override
-    public void btn_accept_gdpr(Boolean accepted) {
-            dialougeGdpr.dismiss();
-    }
 
     @Override
     public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
@@ -417,8 +398,7 @@ public class SearchActivity extends BaseActivity
             break;
             case R.id.action_settings: {
 
-                Intent settingsIntent = new Intent(SearchActivity.this,SettingsActivity.class);
-                startActivity(settingsIntent);
+
 
             }
             break;

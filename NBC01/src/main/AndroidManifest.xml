@@ -35,27 +35,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activitys.PermissonRequesterActivity"
-            android:screenOrientation="fullSensor" />
+
         <activity
             android:name=".activitys.SearchActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".activitys.MainActivity"
-            android:screenOrientation="fullSensor" />
-        <activity
-            android:name=".activitys.RegistrationActivity"
-            android:screenOrientation="fullSensor" />
-        <activity
-            android:name=".activitys.ViewPageActivity"
-            android:screenOrientation="fullSensor" />
-        <activity
-            android:name=".activitys.TabbedActivity.TabbedActivity"
-            android:label="@string/title_activity_tabbed"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!--
+
+             <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.
